@@ -1,73 +1,27 @@
 \documentclass{resume}
 
-\pdfgentounicode=1
-\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry}
-\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
-\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome}
+\input{glyphtounicode}
 
 \name{David Jacob Casey}
 \address{1210 Corriher Gravel Road, China Grove, NC 28023}
-\address{704-213-1038 \\ david.casey.work@gmail.com}
+\contact{\faMobile \ 704-213-1038 \ \faMailForward \ \href{mailto:david.casey.work@gmail.com}{david.casey.work@gmail.com}}
+\social{\faGithub \ \url{https://github.com/zlix12} \ \faLinkedin \ \url{www.linkedin.com/in/davidjcc}}
 
 \begin{document}
-    \begin{basicSection}{Profile}
-        Lead Full-Stack Software Engineer with 5 years of experience in developing unique solutions from design to delivery.
-        Extremely focused on continuous education and having a high positive impact on any organization that I am a member of.
-    \end{basicSection}
-
-    \begin{basicSection}{Education}
-        \begin{educationSection}{Penn State Behrend}{July 2019 - Present}{Bachelor in Software Engineering} \end{educationSection}
-        \begin{educationSection}{Rowan Cabarrus Community College}{Aug 2017 – July 2019}{Associate in Science} \end{educationSection}
-    \end{basicSection}
-
-    \begin{basicSection}{Technical Strengths}
-        \begin{tabular}{ @{} >{\bfseries}l @{\hspace{6ex}} l }
-            Languages \ & Java, JavaScript, TypeScript, Python  \\
-            Technologies/Frameworks & SpringBoot, ReactJs, Django, Apache Kafka\\
-            Testing & Junit5, Jest, Cypress\\
-            Databases & MySql, MSSQL\\
-            Cloud Technologies & Cloud Foundry, Azure, Heroku, AWS, Managed Vault, SonarQube\\
-            Version Control & Github
-        \end{tabular}
-    \end{basicSection}
-
-    \begin{basicSection}{Work Experience}
-        \begin{workExperienceSection}{Allstate}{Jun 2021 - Present}{Lead Full-Stack Software Engineer}{Charlotte, NC - Home Based}
-            \begin{workExperienceSectionSubSection}{Responsibilities}
-                \item Be a leader amongst peers and mentor engineers on the team with an aim to promote individual growth and improve overall team performance.
-                \item Lead Agile XP ceremonies such as iteration planning, stand-up, sprint review, and retrospectives.
-                \item Ensure products meet operational readiness standards by maintaining high level architectural documentation, coordinating with product owners and systems engineering, configuring application monitoring and alerting, creating disaster recovery plans, and more.
-                \item Participate in pair programming sessions daily to ensure code quality, improve team cohesion, and mentor team members.
-                \item Employ test driven development for every line of code to reduce bugs and errors in the final product.
-                \item Facilitate technical planning sessions that result in "just good enough documentation" of high level architectures and design patterns.
-                \item Create and maintain CI/CD pipelines using Jenkins and Docker.
-                \item Maintain and contribute to inner-sourced Java and React libraries used by multiple production applications within the organization.
-            \end{workExperienceSectionSubSection}
-            \begin{workExperienceSectionSubSection}{Accomplishments}
-                \item Created an internally sourced user testing platform that manages and distributes fake customer data in a way the is safe for downstream systems.
-                Additionally, the platform collects metrics and actionable feedback during testing sessions and facilitates its delivery to application teams. (ReactJs, SpringBoot, MSSQL)
-                \item Designed and delivered a data driven and scalable communication management system that includes a self service portal to configure new communications. (SpringBoot, MSSQL, ReactJs, Apache Kafka)
-                \item Led the production of a PoC that demonstrated the ability to automatically accumulate messages from any Kafka topic within the organization and deliver them to a data lake. (Apache Kafka, Kafka Connect, SpringBoot)
-                \item Engineered a declarative decision modeling platform for data scientist.
-                This platform allows users to create low to no code programs via a visual DAG editor.
-                It makes heavy use of graph theory and traversal algorithms to determine when specific execution context is available. (ReactJs, SpringBoot, BPMN)
-            \end{workExperienceSectionSubSection}
-        \end{workExperienceSection}
-        \begin{workExperienceSection}{CorrChoice}{Aug 2017 - Jun 2021}{Application Developer}{Concord, NC}
-            \begin{workExperienceSectionSubSection}{Responsibilities}
-                \item Develop custom software solutions and integrations based on company and customer needs.
-                \item Troubleshoot, maintain, and develop PLC programs for over 30 different pieces of equipment.
-            \end{workExperienceSectionSubSection}
-            \begin{workExperienceSectionSubSection}{Accomplishments}
-                \item Planned, managed, and developed a B2B native mobile application that includes a Node.js REST API, React Native mobile application, and React internal dashboard.
-                Set up efficient CI/CD pipelines that automatically build and release new application builds to the Google and Apple app stores. (Node.js, Socket.io, ReactJs, React Native, Azure Pipelines)
-                \item Created a quality management system that implements a Django REST API and React front-end. (ReactJs, Django, MySQL, RPYC, Progress OpenEdge)
-                \item Managed the creation of many Microsoft Power Platform based applications to quickly meet customer needs. (PowerApps, PowerAutomate, PowerBI, Microsoft Dataverse)
-                \item Improved shipping lane crossing safety in a production facility by developing a web socket-based application used to request and signal pedestrian crossing. (Node.js, Socket.io, JQuery, Python)
-            \end{workExperienceSectionSubSection}
-        \end{workExperienceSection}
-        \begin{workExperienceSection}{United States Marine Corps}{Aug 2013 - Aug 2017}{Squad Leader}{Jacksonville, NC}
-            \item Personally led a group of 12 individuals through multiple foreign countries.
-        \end{workExperienceSection}
-    \end{basicSection}
+    \input{include/profile}
+    \input{include/education}
+    \input{include/strengths}
+    \input{include/experience}
 \end{document}

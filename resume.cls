@@ -1,87 +1,57 @@
-\ProvidesClass{resume}[2010/07/10 v0.9 Resume class]
+\ProvidesClass{resume}[2022/12/17 v1.0 Resume class]
 
-\LoadClass[11pt,letterpaper]{article} % Font size and paper type
+\LoadClass[11pt,letterpaper]{article}
 
-\RequirePackage[parfill]{parskip} % Remove paragraph indentation
-\RequirePackage{array} % Required for boldface (\bf and \bfseries) tabular columns
-\RequirePackage{ifthen} % Required for ifthenelse statements
+\RequirePackage[parfill]{parskip}
+\RequirePackage{array}
+\RequirePackage{ifthen}
 
-\pagestyle{empty} % Suppress page numbers
+\pagestyle{empty}
 
-%----------------------------------------------------------------------------------------
-%	HEADINGS COMMANDS: Commands for printing name and address
-%----------------------------------------------------------------------------------------
+% Setters
+\newcommand{\name}[1]{ \newcommand\@name{#1} }
+\newcommand{\address}[1]{ \newcommand\@address{#1} }
+\newcommand{\contact}[1]{ \newcommand\@contact{#1} }
+\newcommand{\social}[1]{ \newcommand\@social{#1} }
 
-\def \name#1{\def\@name{#1}} % Defines the \name command to set name
-\def \@name {} % Sets \@name to empty by default
-
-\newcommand{\addressSep}{$\diamond$} % Set default address separator to a diamond
-
-% One, two or three address lines can be specified 
-\let \@addressone \relax
-\newcommand{\@addresstwo}{\relax}
-\let \@addressthree \relax
-
-% \address command can be used to set the first, second, and third address (last 2 optional)
-\def \address #1{
-    \@ifundefined{@addresstwo}{
-        \def \@addresstwo {#1}
-    }{
-        \@ifundefined{@addressthree}{
-            \def \@addressthree {#1}
-        }{
-            \def \@addressone {#1}
-        }}
-}
-
-% \printaddress is used to style an address line (given as input)
-\def \printaddress #1{
+% Private Methods
+\newcommand{\@printheaderitem}[1]{
     \begingroup
-    \def \\ {\addressSep\ }
-    \centerline{#1}
+        \centerline{#1}
     \endgroup
-    \par
     \addressskip
 }
 
-% \printname is used to print the name as a page header
-\def \printname {
+\newcommand{\@printname}{
     \begingroup
-    \hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
-    \nameskip\break
+        \hfil{\MakeUppercase{\namesize\textbf \@name}}\hfil
+        \nameskip\break
     \endgroup
 }
 
-%----------------------------------------------------------------------------------------
-%	PRINT THE HEADING LINES
-%----------------------------------------------------------------------------------------
-
+% Redefs
 \let\ori@document=\document
 \renewcommand{\document}{
-    \ori@document  % Begin document
-    \printname % Print the name specified with \name
-    \@ifundefined{@addressone}{}{ % Print the first address if specified
-        \printaddress{\@addressone}}
-    \@ifundefined{@addresstwo}{}{ % Print the second address if specified
-        \printaddress{\@addresstwo}}
-    \@ifundefined{@addressthree}{}{ % Print the third address if specified
-        \printaddress{\@addressthree}}
+    \ori@document
+    \@printname
+    \@printheaderitem{\@address}
+    \@printheaderitem{\@contact}
+    \@printheaderitem{\@social}
 }
 
 % Large Resume section
 % input 1 - section name
 \newenvironment{basicSection}[1]{
     \sectionskip
-    \MakeUppercase{\bf #1} % Section title
+    \MakeUppercase{\bf #1}
     \sectionlineskip
-    \hrule % Horizontal line
-    \begin{list}{}{ % List for each individual item in the section
-        \setlength{\leftmargin}{1.5em} % Margin within the section
-    }
+    \hrule
+    \begin{list}
+        {}
+        { \setlength{\leftmargin}{1.5em} }
         \item[]
-        }{
-    \end{list}
-}
+    }
+{\end{list}}
 
 % Work experience section
 % input 1 - company name
@@ -112,16 +82,18 @@
 % input 2: date range
 % input 3: degree
 \newenvironment{educationSection}[3]{
-        {\textbf{#1}} % Bold institution name
+        {\bf{#1}} % Bold institution name
     \hfill
     {\em #2}
     \\ {#3}
     \hfill
     }
 
-% The below commands define the whitespace after certain things in the document - they can be \smallskip, \medskip or \bigskip
-        \newcommand{\namesize}{\huge} % Size of the name at the top of the document
-\newcommand{\addressskip}{\smallskip} % The space between the two address (or phone/email) lines
-\newcommand{\sectionlineskip}{\medskip} % The space above the horizontal line for each section
-\newcommand{\nameskip}{\bigskip} % The space after your name at the top
-\newcommand{\sectionskip}{\medskip} % The space after the heading section
+% Size
+\newcommand{\namesize}{\large}
+
+% Whitespace
+\newcommand{\nameskip}{\bigskip}
+\newcommand{\addressskip}{\smallskip}
+\newcommand{\sectionlineskip}{\medskip}
+\newcommand{\sectionskip}{\medskip}
